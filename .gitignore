@@ -1,0 +1,6 @@
+# avoid upload python env
+.venv
+.env
+env
+venv
+
