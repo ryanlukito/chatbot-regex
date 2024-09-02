@@ -4,7 +4,7 @@ import re
 introduction = "Hai Saya adalah regex chatbot(yepping), apakah anda memiliki pertanyaan? "
 defaultResponse = "Maaf saya tidak mengerti hal itu, bisakah anda mengulanginya lagi? "
 
-patterns_response = {
+chatbotResponse = {
     r'ya saya memiliki pertanyaan': 'baiklah apa pertanyaan anda? ',
     r'hi|hello|hey|hai|hallo': 'Hallo, ada yang saya bisa bantu? ',
     r'bagaimana|apa kabarmu': 'Saya baik baik saja, bagaimana dengan kamu? ',
@@ -12,29 +12,17 @@ patterns_response = {
     r'(.*) your (favorite|favourite) (.*)': 'I do not have preferences, but I enjoy helping you! ',
     r'thank you|thanks|terimakasih|makasih .*': 'sama sama, jika anda punya pertanyaan lebih lanjut silahkan tanyakan saja! ',
     r'bye|goodbye|selamat tinggal|oke.*|baiklah|terimakasih': 'Goodbye! Have a great day! '
-}
-
-chatbotResponse = {} # Tinggal ditentuin chatbotnya mau respon apa (dibikin dictionary)
+} # Tinggal ditentuin chatbotnya mau respon apa (dibikin dictionary)
 
 defResponse = {} # default response ke user kalo inputnya gk sesuai template
 
 def getResponse(userInput):
-    for pattern, response in patterns_response.items():
+    for pattern, response in chatbotResponse.items():
         if re.search(pattern=pattern, string=userInput, flags=re.IGNORECASE):
             return response
     return defaultResponse
 
-def chatbotRegex():
-    print('Chatbot: ')
-    while True:
-        userInput = input('You: ')
-        if re.search(r'bye|goodbye', userInput, re.IGNORECASE):
-            print('Chatbot: Bye.')
-            break
-        response = getResponse(userInput)
-        print(f'Chatbot: {response}')
-
-def ngeYepping(saveHistory=False):
+def chatbotRegex(saveHistory=False):
     i = 0
     CharList = ['YepBot', 'user']
     print("Selamat Datang! Ini adalah rule-based chat bot. Unutk Keluar masukan -1!\n")
@@ -56,4 +44,4 @@ def ngeYepping(saveHistory=False):
             break
 
 if __name__ == "__main__":
-     main()
+     chatbotRegex()
