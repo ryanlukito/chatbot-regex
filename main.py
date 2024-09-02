@@ -1,3 +1,4 @@
+# ChatBot RegEx
 import re
 
 introduction = "Hai Saya adalah regex chatbot(yepping), apakah anda memiliki pertanyaan? "
@@ -13,11 +14,25 @@ patterns_response = {
     r'bye|goodbye|selamat tinggal|oke.*|baiklah|terimakasih': 'Goodbye! Have a great day! '
 }
 
+chatbotResponse = {} # Tinggal ditentuin chatbotnya mau respon apa (dibikin dictionary)
+
+defResponse = {} # default response ke user kalo inputnya gk sesuai template
+
 def getResponse(userInput):
     for pattern, response in patterns_response.items():
         if re.search(pattern=pattern, string=userInput, flags=re.IGNORECASE):
             return response
     return defaultResponse
+
+def chatbotRegex():
+    print('Chatbot: ')
+    while True:
+        userInput = input('You: ')
+        if re.search(r'bye|goodbye', userInput, re.IGNORECASE):
+            print('Chatbot: Bye.')
+            break
+        response = getResponse(userInput)
+        print(f'Chatbot: {response}')
 
 def ngeYepping(saveHistory=False):
     i = 0
@@ -40,8 +55,5 @@ def ngeYepping(saveHistory=False):
             print("PROGRAM SELESAI, TERIMAKASIH!")
             break
 
-def main():
-    ngeYepping()
-
 if __name__ == "__main__":
-    main()
+     main()
