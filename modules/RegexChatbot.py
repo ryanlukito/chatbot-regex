@@ -8,11 +8,13 @@ class ChatBot:
     ):
         if chatbotResponse is None:
             chatbotResponse = {
+                r'hi|hello|hey|hai|hallo|halo': 'Halo, ada yang saya bisa bantu?',
+                r'siapa namamu?': 'Saya adalah ruled based chatbot yang dibuat oleh Alex & Ryan. Saya dibuat untuk menemani kamu',
+                r'apa tujuanmu dibuat?': 'Sekedar basa-basi saja',
+                r'apakah kamu suka (.*)': 'I do not have preferences, but I enjoy helping you!',
                 r'ya saya memiliki pertanyaan': 'Baiklah, apa pertanyaan Anda?',
-                r'hi|hello|hey|hai|hallo': 'Hallo, ada yang saya bisa bantu?',
                 r'bagaimana|apa kabarmu': 'Saya baik-baik saja, bagaimana dengan kamu?',
                 r'siapa .*mu': 'Saya adalah ruled based chatbot yang dibuat oleh Alex & Ryan.',
-                r'(.*) your (favorite|favourite) (.*)': 'I do not have preferences, but I enjoy helping you!',
                 r'thank you|thanks|terimakasih|makasih .*': 'Sama-sama, jika Anda punya pertanyaan lebih lanjut silakan tanyakan saja!',
                 r'bye|goodbye|selamat tinggal|oke.*|baiklah|terimakasih': 'Goodbye! Have a great day!'
             }
@@ -30,7 +32,7 @@ class ChatBot:
         for pattern, response in self.chatbotResponse.items():
             if re.search(pattern=pattern, string=userInput, flags=re.IGNORECASE):
                 return response
-        return self.defaultResponse, self.characterTurn
+        return self.defaultResponse
 
     @property
     def characterTurn(self):

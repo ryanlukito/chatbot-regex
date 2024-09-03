@@ -4,7 +4,7 @@ import os
 from modules import ChatBot
 
 load_dotenv()
-bot_token = os.getenv('HTTP_API_TOKEN')
+bot_token = os.getenv('BOT_TOKEN')
 
 RegexBot = ChatBot(
     botName='RegexBot',
@@ -17,7 +17,7 @@ async def start_command(update, context):
 
 async def handle_message(update, context):
     user_message = update.message.text
-    bot_response, character = RegexBot.reply(user_message)
+    bot_response = RegexBot.reply(user_message)
     await update.message.reply_text(bot_response)
 
 if __name__ == '__main__':
@@ -28,7 +28,6 @@ if __name__ == '__main__':
     
     # Message Handler
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-    print(f"{character}: {bot_response}")
 
     # Run bot
     application.run_polling(1.0)
