@@ -23,11 +23,8 @@ async def handle_message(update, context):
 if __name__ == '__main__':
     application = Application.builder().token(bot_token).build()
 
-    # Commands
     application.add_handler(CommandHandler('start', start_command))
     
-    # Message Handler
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
-    # Run bot
     application.run_polling(1.0)
