@@ -6,3 +6,7 @@ venv
 modules/__pycache__
 .img
 img
+.vid
+vid
+doc
+.doc
